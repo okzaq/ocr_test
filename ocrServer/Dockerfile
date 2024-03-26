@@ -16,7 +16,12 @@ ENV LANG ja_JP.UTF-8 \
 RUN apt-get -y install tesseract-ocr tesseract-ocr-jpn
 RUN apt-get clean
 
+COPY ./ocrServer/requirements.txt /workspace/requirements.txt
 RUN pip install --upgrade pip; \
-    pip install \
-    pyocr \
-    pytesseract
+    pip install -r ./requirements.txt
+
+# -------------------------------------------------
+# [2] サーバー起動
+# -------------------------------------------------
+
+CMD ["./start.sh"]
